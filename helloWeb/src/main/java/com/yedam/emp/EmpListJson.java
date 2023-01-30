@@ -18,7 +18,6 @@ public class EmpListJson extends HttpServlet {
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("text/json;charset=utf-8");
 		String id = req.getParameter("del_id"); // 요청페이지에서 del_id로 파라미터 지정.
-
 		EmpDAO dao = new EmpDAO();
 		if (dao.delEmp(Integer.parseInt(id)) > 0) {
 			// {"retCode":"Success"}
