@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <h3>fetch API를 활용.</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>아이디</th>
+          <th>이름</th>
+          <th>이메일</th>
+          <th>성별</th>
+          <th>급여</th>
+          <th>삭제</th>
+        </tr>
+      </thead>
+      <tbody id="list"></tbody>
+    </table>
+
+    <script>
+      fetch("../data/data.json ")
+        .then((resolve) => resolve.json())
+        .then((result) => {
+          // console.log(result);
+          //배열 관련 메소드 : forEach, map//a타입을 넣으면 b타입 리턴, filter//조건 만족하는것, reduce 메소드
+          result.forEach(function (item, idx, arry) {
+            //DOM 요소 생성.
+            let titles = ["id", "first_name", "email", "gender", "salary"];
+            //데이터 건수 만큼
+            let tr = document.createElement("tr");
+
+            //columns 갯수 만큼 반복.
+            titles.forEach(function (title) {
+              let td = document.createElement("td");
+
+              td.innerText = item[title];
+              tr.append(td);
+            });
+
+            // console.log(tr);
+            list.append(tr);
+            let td = document.createElement("td");
+            let btn = document.createElement("button");
+            btn.innerText = "삭제";
+            btn.addEventListener("click", function () {
+              console.log(this.parentElement.parentElement);
+              this.parentElement.parentElement.remove();
+            });
+
+            td.append(btn);
+            tr.append(td);
+          }); //result배열에 등록된 값의 갯수 만큼 function()실행
+        })
+        .catch((reject) => {
+          console.log(reject);
+        });
+
+      //this => function() {this =>widow전역객체}
+      //this => event 의 callback function() {this => event대상.}
+    </script>
+  </body>
+</html>
