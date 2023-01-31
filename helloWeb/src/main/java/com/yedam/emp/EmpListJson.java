@@ -12,6 +12,66 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/empListJson")
 public class EmpListJson extends HttpServlet {
 
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+
+		String id = req.getParameter("id");
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		String hire = req.getParameter("hire");
+		String job = req.getParameter("job");
+
+		EmpVO vo = new EmpVO();
+		vo.setEmployeeId(Integer.parseInt(id));
+		vo.setLastName(name);
+		vo.setEmail(email);
+		vo.setHireDate(hire);
+		vo.setJobId(job);
+
+		System.out.println(vo);
+
+		resp.getWriter().print("compliete");
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		
+		String param = req.getParameter("param");
+		String id = req.getParameter("id");
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		String hire = req.getParameter("hire");
+		String job = req.getParameter("job");
+
+		EmpVO vo = new EmpVO();
+		vo.setEmployeeId(Integer.parseInt(id));
+		vo.setLastName(name);
+		vo.setEmail(email);
+		vo.setHireDate(hire);
+		vo.setJobId(job);
+
+		EmpDAO dao = new EmpDAO();
+		//param=update 
+		if(param.equals("update")){
+			if(dao.updateEmp(vo)>0) {
+				resp.getWriter().print("{\"retCode\":\"Success\"}");
+			}else {
+			resp.getWriter().print("{\"retCode\":\"Fail\"}");
+			}
+		}else {
+			if (dao.addEmp(vo) > 0) {
+				resp.getWriter().print("{\"retCode\":\"Success\"}");
+			} else {
+				resp.getWriter().print("{\"retCode\":\"Fail\"}");
+			}
+			
+		}
+
+	}
+
 	// 제어의 역전 (IoC (inversion of control))
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,9 +100,9 @@ public class EmpListJson extends HttpServlet {
 		String json = "[";
 
 		for (int i = 0; i < list.size(); i++) {
-			json += "{\"id\":" + list.get(i).getEmployeeId() + ",\"firstName\":\"" + list.get(i).getFirstName()
-					+ "\",\"email\":\"" + list.get(i).getEmail() + "\",\"hireDate\":\"" + list.get(i).getHireDate()
-					+ "\",\"job\":\"" + list.get(i).getJobId() + "\"}";
+			json += "{\"id\":" + list.get(i).getEmployeeId() + ",\"lastName\":\"" + list.get(i).getLastName()
+					+ "\",\"email\":\"" + list.get(i).getEmail() + "\",\"hireDate\":\""
+					+ list.get(i).getHireDate().substring(0, 10) + "\",\"job\":\"" + list.get(i).getJobId() + "\"}";
 			if (i + 1 != list.size()) {
 				json += ","; // json의 마지막 문에 콤마를 넣지 않겠다
 			}
@@ -51,4 +111,5 @@ public class EmpListJson extends HttpServlet {
 		resp.getWriter().print(json);
 
 	}
+
 }

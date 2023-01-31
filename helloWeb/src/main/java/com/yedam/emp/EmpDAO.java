@@ -69,7 +69,7 @@ public class EmpDAO {
 	//위의 List<Map<String,Object>>와 비교.
 	public List<EmpVO> empVoList()	{
 		connect();
-		sql = "select * from emp_temp";
+		sql = "select * from emp_temp order by employee_id";
 		List <EmpVO>list = new ArrayList<>();
 		try {
 			stmt = conn.createStatement();
@@ -144,6 +144,27 @@ public class EmpDAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, sal);
 			psmt.setInt(2, eid);
+			
+			r = psmt.executeUpdate(); // 처리된 건수. 성공하면 1
+									
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
+		
+	}
+	//수정버튼
+	public int updateEmp(EmpVO emp)	{
+		connect();
+		sql = "update emp_temp set hire_date = ?, email =?, job_id=?, last_name= ? where employee_id = ?";
+		int r =0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, emp.getHireDate());
+			psmt.setString(2, emp.getEmail());
+			psmt.setString(3, emp.getJobId());
+			psmt.setString(4, emp.getLastName());
+			psmt.setInt(5, emp.getEmployeeId());
 			
 			r = psmt.executeUpdate(); // 처리된 건수. 성공하면 1
 									
