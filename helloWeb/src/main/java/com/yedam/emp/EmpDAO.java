@@ -40,7 +40,7 @@ public class EmpDAO {
 	
 	//목록조회.
 	public List<Map<String, Object>> empList(){
-		sql = "select * from emp_temp";
+		sql = "select * from emp_temp order by 1";
 		connect();
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		try {

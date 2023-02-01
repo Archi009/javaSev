@@ -2,22 +2,16 @@
  * empList.js
  */
 //목록 출력
-let totalAry = []; //전체 목록 담아놓을 용도
-fetch("../empListJson ")
+fetch("../SwimListJson")
   .then((resolve) => resolve.json())
   .then((result) => {
-    // console.log(result);
-    localStorage.setItem("total", result.length);
-    totalAry = result;
+    console.log(result);
     //배열 관련 메소드 : forEach, map//a타입을 넣으면 b타입 리턴, filter//조건 만족하는것, reduce 메소드
-    // result.forEach(function (item) {
-    //   let tr = makeTr(item);
-    //   list.append(tr);
-
-    // });//result배열에 등록된 값의 갯수 만큼 function()실행
-    showPages(12);
-    employeeList(12);
-  })
+    result.forEach(function (item) {
+      let tr = makeTr(item);
+      list.append(tr);
+    });
+  }) //result배열에 등록된 값의 갯수 만큼 function()실행
 
   .catch((reject) => {
     console.log(reject);
@@ -125,7 +119,7 @@ function deleteRowFunc() {
 //수정화면 함수.
 function modityTrFunc() {
   //this => 수정버튼
-  let tr = document.createElement("tr");
+
   let thisTr = this.parentElement.parentElement;
   console.log("사원번호:", thisTr.children[0].innerText);
   console.log("이름:", thisTr.children[1].innerText);
@@ -241,7 +235,7 @@ function addMemberFnc(event) {
     alert("필수입력값을 확인!!");
     return;
   }
-  fetch("../empListJson", {
+  fetch("../SwimListJson", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" }, //파라메터로 key=value&key1=value1식으로 보낸다 //파일 보내는 형식지정.
     body:
@@ -327,36 +321,6 @@ function processAtrerFetch(ary = []) {
         }
       }
     }
-  });
-}
-//페이지 목록
-function showPages(curPage = 5) {
-  let endPage = Math.ceil(curPage / 10) * 10;
-  let startPage = endPage - 9;
-  let realEnd = Math.ceil(255 / 10);
-  endPage = endPage > realEnd ? realEnd : endPage;
-  let paging = document.getElementById("paging");
-
-  for (let i = startPage; i <= endPage; i++) {
-    let aTag = document.createElement("a");
-    aTag.href = "index.html";
-    aTag.innerText = i;
-    paging.append(aTag);
-  }
-}
-
-//사원 목록
-function employeeList(curPage = 5) {
-  let end = curPage * 10;
-  let start = end - 9;
-  let newList = totalAry.filter((emp, idx) => {
-    return idx + 1 >= start && idx < end;
-  });
-
-  let lst = document.getElementById("list");
-  newList.forEach((emp) => {
-    let tr = makeTr(emp);
-    lst.append(tr);
   });
 }
 

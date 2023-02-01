@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>util/findeEl.html</title>
+    <style>
+      div.outer {
+        background-color: yellow;
+        width: 540px;
+        height: 350px;
+      }
+      div.inner {
+        display: inline-block;
+        background-color: aqua;
+        height: 30px;
+        width: 120px;
+        margin: 2px;
+        border: 1px solid black;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="list" class="outer"></div>
+    <input type="text" id="search" />
+    <button id="btn">제거하기</button>
+    <div id="timer"></div>
+    <script>
+      let words = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. At corporis magni corrupti explicabo deleniti tempore, esse, nostrum eius itaque aliquid omnis porro ex obcaecati cupiditate possimus, praesentium facilis error maiores.`;
+      let item = words.split(" ");
+      // console.log(item);
+      item.forEach((word) => {
+        let div = document.createElement("div");
+        div.innerText = word;
+        div.setAttribute("class", "inner");
+        list.append(div);
+      });
+
+      search.addEventListener("change", function () {
+        document.querySelectorAll(".inner").forEach((word) => {
+          if (word.innerText == search.value) {
+            word.remove();
+          }
+        });
+        search.value = "";
+        search.focus();
+      });
+
+      let cnt = 5;
+      let itv = setInterval(() => {
+        if (cnt == 0) {
+          alert("실패");
+          clearInterval(itv);
+          cnt = 5;
+          timer.innerText = cnt;
+          return;
+        }
+        timer.innerText = --cnt;
+      }, 1000);
+      // btn.addEventListener("click", selDel);
+
+      // //삭제 함수
+      // function selDel() {
+      //
+      //   let div = document.querySelectorAll("div.inner");
+      //   console.log(txt);
+      //   console.log(div);
+      //   for (let i = 0; i < item.length; i++) {
+      //     console.log(div[i].innerText);
+      //     if (div[i].innerText == search.value) {
+      //       div[i].remove();
+      //     }
+      //   }
+      // }
+    </script>
+  </body>
+</html>
