@@ -1,0 +1,135 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      #container > div {
+        border: 3px solid gray;
+      }
+
+      #display,
+      #result {
+        width: 400px;
+        height: 80px;
+        font-size: 60px;
+        font-weight: bold;
+        text-align: right;
+        padding-right: 8px;
+      }
+
+      .buttonWrap {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .buttonWrap button {
+        width: 100px;
+        height: 80px;
+        font-size: 20px;
+        padding: 10px;
+      }
+    </style>
+    <title>계산기</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div>
+        <div>
+          <input id="display" type="text" />
+        </div>
+        <div>
+          <input id="result" type="text" />
+        </div>
+
+        <div>
+          <div class="buttonWrap">
+            <button onclick="addRrmain('%')">%</button>
+            <button onclick="reset()">C</button>
+            <button onclick="del()">del</button>
+            <button onclick="addPer('/')">/</button>
+          </div>
+          <div class="buttonWrap">
+            <button onclick="addOutput(9)">9</button>
+            <button onclick="addOutput(8)">8</button>
+            <button onclick="addOutput(7)">7</button>
+            <button onclick="addMultiple('*')">*</button>
+          </div>
+          <div class="buttonWrap">
+            <button onclick="addOutput(6)">6</button>
+            <button onclick="addOutput(5)">5</button>
+            <button onclick="addOutput(4)">4</button>
+            <button onclick="addPlus('+')">+</button>
+          </div>
+          <div class="buttonWrap">
+            <button onclick="addOutput(3)">3</button>
+            <button onclick="addOutput(2)">2</button>
+            <button onclick="addOutput(1)">1</button>
+            <button onclick="addMinus('-')">-</button>
+          </div>
+          <div class="buttonWrap">
+            <button onclick="addOutput(0)">0</button>
+            <button onclick="addOutput('.')">.</button>
+            <button style="width: 200px" onclick="calculate()">=</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function addOutput(a) {
+        display.value += a;
+      }
+      function del() {
+        let value = display.value;
+        console.log(display.value[value.length() - 1]);
+      }
+      function calculate() {
+        let a = display.value.indexOf("+");
+        console.log(a);
+        if (a > 0) {
+          console.log(display.value);
+        }
+      }
+      function addPlus(a) {
+        if (display.value.indexOf("+") > 0) {
+        } else {
+          display.value += a;
+        }
+      }
+      function addMinus(a) {
+        if (display.value.indexOf("-") > 0) {
+        } else {
+          display.value += a;
+        }
+      }
+      function addMultiple(a) {
+        if (display.value.indexOf("*") > 0) {
+        } else {
+          display.value += a;
+        }
+      }
+      function addPer(a) {
+        if (display.value.indexOf("/") > 0) {
+        } else {
+          display.value += a;
+        }
+      }
+      function addRrmain(a) {
+        if (display.value.indexOf("%") > 0) {
+        } else {
+          display.value += a;
+        }
+      }
+    </script>
+  </body>
+</html>
