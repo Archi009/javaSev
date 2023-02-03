@@ -19,7 +19,7 @@ public class DAO {
 	public PreparedStatement psmt = null; // 좀 더 편하게 sql구문 사용가능
 	public ResultSet rs = null;
 
-	public	String sql;
+	public String sql;
 
 	public void connect() {
 		try {
@@ -33,24 +33,22 @@ public class DAO {
 	}
 
 	public void disconn() {
-		//사용한 리소스 환원
-			try {
-				if (conn != null) {
+		// 사용한 리소스 환원
+		try {
+			if (conn != null) {
 				conn.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-				if (psmt != null) {
-					psmt.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (psmt != null) {
+				psmt.close();
+			}
+			if (rs != null) {
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
-
-
+}
