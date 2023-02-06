@@ -2,7 +2,9 @@ package co.yedam.emp.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import co.yedam.common.DAO;
 import co.yedam.emp.vo.EmpVO;
@@ -53,11 +55,10 @@ public class EmpDAO extends DAO{
 		}
 		return null;
 	}
-	
+	//수정
 	public int updateEmp(EmpVO emp) {
 		connect();
-		sql = "update emp_temp set( first_name,last_name, email, hire_date, job_id)"
-				+"values(?,?,?,?,?) where employee_id ?";
+		sql = "update emp_temp set first_name=?, last_name=?, email=?, hire_date=?, job_id=? where employee_id= ?";
 				
 				try {
 					psmt = conn.prepareStatement(sql);
@@ -143,8 +144,47 @@ public class EmpDAO extends DAO{
 	}
 	
 	
-	
-	
+	//직무리스트
+	public Map<String,String> jobList(){
+		Map <String,String>jobs = new HashMap<String,String>();
+		connect();
+		sql = "select job_id, job_title from jobs "
+				+"order by job_id";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				jobs.put(rs.getString("job_id"), rs.getString("job_title"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return jobs;
+	}
+
+
+	public int deleteEmp(int id) {
+		int delId = 0;
+		connect();
+		sql = "delete from emp_temp where employee_id =? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, id);
+			
+			int r = psmt.executeUpdate();
+			return r;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			disconn();
+		}
+		return 0;
+		
+	}
 	
 	
 	

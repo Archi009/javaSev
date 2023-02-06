@@ -1,6 +1,7 @@
 package co.yedam.emp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import co.yedam.emp.vo.EmpVO;
 
@@ -10,5 +11,6 @@ public interface EmpService {
 	public int addEmp(EmpVO emp); //등록.
 	public EmpVO getEmp(int empId);//조회.
 	public int updateEmp(EmpVO emp);//수정
-	
+	public Map<String, String> jobList();
+	public int delEmp(int id);
 }

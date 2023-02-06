@@ -1,6 +1,7 @@
 package co.yedam.emp.command;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,11 +19,12 @@ public class EmpModFormControl implements Command {
 		//수정화면 : WEB-INF /views/modify.jsp 호출
 		//상세조회: service =>serviceImpl ->dao
 				String id = req.getParameter("id");
-				
 				EmpService service = new EmpServiceImpl();
 				EmpVO emp = service.getEmp(Integer.parseInt(id));
+				Map<String, String> jobList = service.jobList();
+				req.setAttribute("jobList", jobList);
 				
-				req.setAttribute("searchVO", emp);
+				req.setAttribute("modiFyVO", emp);
 				
 				try {
 					req.getRequestDispatcher("WEB-INF/views/modify.jsp").forward(req, resp);

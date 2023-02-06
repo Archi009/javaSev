@@ -39,7 +39,7 @@ public class EmpControl implements Command {
 		} else if (method.equals("POST")) {
 			
 			// 입력
-			String eid = req.getParameter("eid");
+			String id = req.getParameter("id");
 			String fName = req.getParameter("First_name");
 			String lName = req.getParameter("Last_name");
 			String job = req.getParameter("job");
@@ -47,7 +47,7 @@ public class EmpControl implements Command {
 			String mail = req.getParameter("email");
 
 			EmpVO emp = new EmpVO();
-			emp.setEmployeeId(Integer.parseInt(eid));
+			emp.setEmployeeId(Integer.parseInt(id));
 			emp.setLastName(lName);
 			emp.setFirstName(fName);
 			emp.setEmail(mail);

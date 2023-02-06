@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import co.yedam.emp.command.EmpControl;
 import co.yedam.emp.command.EmpDetailControl;
 import co.yedam.emp.command.EmpForm;
@@ -42,6 +43,9 @@ public class FrontController extends HttpServlet {
 		map.put("/empList.do", new EmpList());//목록페이지
 		map.put("/empDetail.do", new EmpDetailControl()); 
 		map.put("/empModForm.do", new EmpModFormControl());// 수정 화면 페이지
+		map.put("/empModify.do", new EmpModifyControl());// 
+		map.put("/errorPage.do", new ErroPage());// 
+		map.put("/empRemove.do", new EmpRemoveControl());// 삭제 처리 페이지
 		
 //		map.put("/empModify.do", new EmpModifyControl());// 수정 화면 페이지
 		

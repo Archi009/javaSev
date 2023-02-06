@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <style>
+      #titles {
+        float: left;
+        width: 60%;
+        text-align: center;
+      }
+      #btns {
+        /* float: right; */
+        width: 40%;
+        height: 116.06px;
+        display: inline-block;
+        text-align: center;
+      }
+      #seDiv {
+        clear: both;
+      }
+      #tbl {
+        width: 100%;
+        text-align: center;
+      }
+      .f1 {
+        width: 30%;
+        float: left;
+        background-color: gray;
+      }
+      .inpDiv {
+        width: 70%;
+
+        float: right;
+      }
+      input {
+        width: 100%;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="show">
+      <h3>도서목록 페이지</h3>
+      <div>
+        <div id="titles">
+          <div class="f1"><label class="field">도서코드</label></div>
+          <div class="inpDiv"><input type="text" id="bookCode" /></div>
+          <br />
+          <div class="f1"><label class="field">도서명</label></div>
+          <div class="inpDiv"><input type="text" id="bookName" /></div>
+          <br />
+          <div class="f1"><label class="field">저자</label></div>
+          <div class="inpDiv"><input type="text" id="author" /></div>
+          <br />
+          <div class="f1"><label class="field">출판사</label></div>
+          <div class="inpDiv"><input type="text" id="press" /></div>
+          <br />
+          <div class="f1"><label class="field">금액</label></div>
+          <div class="inpDiv"><input type="text" id="price" /></div>
+          <br />
+        </div>
+        <div id="btns">
+          <button type="button" id="checkSave">저장</button>
+          <br />
+          <button type="button" id="checkDel">선택삭제</button>
+        </div>
+      </div>
+      <div id="seDiv">
+        <table id="tbl" border="1">
+          <thead id="title">
+            <tr>
+              <th><input type="checkbox" name="" id="allcheck" /></th>
+              <th>도서코드</th>
+              <th>도서명</th>
+              <th>저자</th>
+              <th>출판사</th>
+              <th>가격</th>
+              <th>삭제</th>
+            </tr>
+          </thead>
+          <tbody id="list"></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="js/book.js"></script>
+  </body>
+</html>

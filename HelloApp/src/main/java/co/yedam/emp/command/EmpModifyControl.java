@@ -15,27 +15,30 @@ public class EmpModifyControl implements Command {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) {
 		// service:modEmp(EmpVO) -> serviceImpl: modEmp(EmpVO)-> dao : updateEmp(EmpVO)
 		// 입력
+		//id - 112&fname = lname email job
 
 		RequestDispatcher rd = null;
 		
-		String eid = req.getParameter("eid");
+		String id = req.getParameter("id");
 		String fName = req.getParameter("First_name");
 		String lName = req.getParameter("Last_name");
 		String job = req.getParameter("job");
 		String hire = req.getParameter("hire_date");
 		String mail = req.getParameter("email");
-
+		
 		EmpVO emp = new EmpVO();
-		emp.setEmployeeId(Integer.parseInt(eid));
+		
+		emp.setEmployeeId(Integer.parseInt(id));
 		emp.setLastName(lName);
 		emp.setFirstName(fName);
 		emp.setEmail(mail);
 		emp.setHireDate(hire);
 		emp.setJobId(job);
 
+		
 		// 서비스 로직
 		EmpService service = new EmpServiceImpl();
-		int r = service.addEmp(emp);
+		int r = service.updateEmp(emp);
 
 		// 요청 재지정.
 		try {
@@ -44,9 +47,8 @@ public class EmpModifyControl implements Command {
 //							rd = req.getRequestDispatcher("WEB-INF/result/addResult.jsp");
 //							rd.forward(req, resp);//페이지 재지정
 			} else {
-				// resp.sendRedirect("WEB-INF/result/errorResult.jsp");
-				rd = req.getRequestDispatcher("WEB-INF/result/errorResult.jsp");
-				rd.forward(req, resp);// 페이지 재지정
+			resp.sendRedirect("errorPage.do");
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
