@@ -5,7 +5,12 @@
 <configuration>
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
+	<typeAliases>
+	<!-- 경로 지정 쉽게  -->
+		<typeAlias alias="MemberVO" type="co.yedam.member.vo.MemberVO" />
+	</typeAliases>
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -20,5 +25,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="co/yedam/emp/mapper/EmpMapper.xml" />
+		<mapper class="co.yedam.member.mapper.MemberMapper" />
 	</mappers>
 </configuration>

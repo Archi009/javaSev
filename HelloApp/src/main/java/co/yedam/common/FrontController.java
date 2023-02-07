@@ -10,15 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import co.yedam.emp.command.EmpControl;
 import co.yedam.emp.command.EmpDetailControl;
 import co.yedam.emp.command.EmpForm;
 import co.yedam.emp.command.EmpList;
 import co.yedam.emp.command.EmpModFormControl;
 import co.yedam.emp.command.EmpModifyControl;
-import co.yedam.emp.command.LoginControl;
 import co.yedam.emp.command.ServiceControl;
+import co.yedam.member.command.LoginControl;
+import co.yedam.member.command.LoginFormControl;
+import co.yedam.member.command.LogoutControl;
+import co.yedam.member.command.MemberListControl;
+import co.yedam.member.command.SignOnControl;
+import co.yedam.member.command.SignOnFormControl;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -35,7 +39,6 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new MainControl());
 		
 		map.put("/service.do",new ServiceControl());
-		map.put("/login.do", new LoginControl());
 		// get : 목록출력(json)요청, post : 입력처리.
 		map.put("/employee.do", new EmpControl());
 		//xxxForm.do : 페이지 오픈. <= 폴더를 WEB-INF로 옮겨서 톰캣이 url방식으로의 접근을 막았다
@@ -47,7 +50,12 @@ public class FrontController extends HttpServlet {
 		map.put("/errorPage.do", new ErroPage());// 
 		map.put("/empRemove.do", new EmpRemoveControl());// 삭제 처리 페이지
 		
-//		map.put("/empModify.do", new EmpModifyControl());// 수정 화면 페이지
+		map.put("/loginForm.do", new LoginFormControl());// 로그인 화면
+		map.put("/login.do", new LoginControl());// 로그인 페이지
+		map.put("/logout.do", new LogoutControl());// 로그아웃 처리
+		map.put("/signOnForm.do", new SignOnFormControl());// 회원가입 화면 
+		map.put("/signon.do", new SignOnControl());// 회원가입 화면 
+		map.put("/memberList.do", new MemberListControl());// 회원가입 화면 
 		
 		
 	}
