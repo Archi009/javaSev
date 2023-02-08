@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.notice.mapper.NoticeMapper">
+	<select id="selectList" resultType="NoticeVO">
+		SELECT * FROM TBL_NOTICE
+		ORDER BY NOTICE_ID DESC
+	</select>
+	<select id="searchOne" resultType="NoticeVO">
+		SELECT * FROM TBL_NOTICE WHERE
+		NOTICE_ID = #{nid}
+	</select>
+	<insert id="insertNotice" parameterType="NoticeVO">
+		INSERT INTO TBL_NOTICE
+		(NOTICE_ID, NOTICE_WRITER ,NOTICE_TITLE,
+		NOTICE_SUBJECT,attach_file)
+		VALUES(NOTICE_SEQ.NEXTVAL,
+		#{noticeWriter},#{noticeTitle},#{noticeSubject},#{attachFile})
+	</insert>
+	
+	<update id="updateNotice" parameterType="NoticeVO">
+		UPDATE TBL_NOTICE
+		SET
+		NOTICE_TITLE=#{noticeTitle}
+		,NOTICE_SUBJECT=#{noticeSubject}
+		WHERE NOTICE_ID#{noticeId}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		DELETE FROM TBL_NOTICE
+		WHERE NOTICE_ID=#{nid}
+	</delete>
+	
+	<update id="increaseCnt" parameterType="int">
+		UPDATE TBL_NOTICE
+		SET HIT_COUNT = HIT_COUNT + 1
+		WHERE NOTICE_ID = #{nid}
+	</update>
+
+
+
+</mapper>
