@@ -31,5 +31,10 @@ public class MemberServiceMybatis implements MemberService {
 	public MemberVO getMember(String id) {
 		return mapper.getMember(id);
 	}
+
+	@Override
+	public int updateMember(MemberVO member) {
+		return mapper.updateMember(member);
+	}
 	
 }

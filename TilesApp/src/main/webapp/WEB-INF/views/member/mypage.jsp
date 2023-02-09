@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h3>현재페이지는 myPageForm.do의 결과 mypage.jsp입니다</h3>
+<h3>"${id }"의 개인정보 페이지 입니다.</h3>
 
 <table class="table">
 	<tr>

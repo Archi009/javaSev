@@ -9,4 +9,5 @@ public interface MemberService {
 	public int addMember(MemberVO member);
 	public List<MemberVO> memberList();
 	public MemberVO getMember(String id); //회원정보 조회용.
+	public int updateMember(MemberVO member);//수정
 }

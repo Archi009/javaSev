@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.member.command.*;
 import com.yedam.notice.command.*;
 
-import com.yedam.member.command.LogoutControl;
-
 
 
 
@@ -51,6 +49,7 @@ public class FrontController extends HttpServlet {
 		map.put("/login.do", new Login());//로그인 처리
 		map.put("/logout.do", new LogoutControl());// 로그아웃 처리
 		map.put("/mypageForm.do", new MypageControl());//로그인 처리
+		map.put("/modify.do", new ModifyControl());//개인정보 수정
 	}
 	
 	@Override

@@ -18,4 +18,8 @@
 	<select id= "getMember" parameterType="string" resultType="MemberVO">
 		select * from members where member_id=#{id}
 	</select>
+	<update id="updateMember" parameterType="MemberVO">
+		
+	
+	</update>
 </mapper>
