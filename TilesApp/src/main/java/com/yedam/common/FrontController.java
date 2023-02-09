@@ -1,0 +1,82 @@
+package com.yedam.common;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.yedam.member.command.*;
+import com.yedam.notice.command.*;
+
+import com.yedam.member.command.LogoutControl;
+
+
+
+
+public class FrontController extends HttpServlet {
+	
+	private Map<String,Command> map;
+	private String charset;
+	
+	public FrontController() {
+		map = new HashMap<String,Command>();
+	}
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		
+		charset = config.getInitParameter("charset");
+		
+		map.put("/main.do", new MainControl());
+		map.put("/second.do", new SecondControl());
+		map.put("/noticeList.do", new NoticeList());
+		map.put("/noticeDetail.do", new NoticeDetail());
+		map.put("/noticeForm.do", new NoticeForm());//글등록 페이지
+		map.put("/noticeAdd.do", new NoticeAdd());//글등록 처리
+		
+		//댓글
+		map.put("/replyList.do", new ReplyList());//댓글목록
+		map.put("/removeReply.do", new RemoveReply());//댓글삭제
+		map.put("/addReply.do", new AddReply());//댓글등록
+
+		
+		//회원관련
+		map.put("/loginForm.do", new LoginForm());//로그인 화면
+		map.put("/login.do", new Login());//로그인 처리
+		map.put("/logout.do", new LogoutControl());// 로그아웃 처리
+		map.put("/mypageForm.do", new MypageControl());//로그인 처리
+	}
+	
+	@Override
+	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding(charset);
+		
+		String uri = req.getRequestURI();
+		String context = req.getContextPath();
+		String page = uri.substring(context.length());
+		System.out.println(page);
+		
+		Command command = map.get(page);
+		String viewPage = command.exec(req, resp);
+		//notice/noticeList.tiles
+//		System.out.println(viewPage);
+		
+		if(viewPage.endsWith(".tiles")) {
+			RequestDispatcher rd = req.getRequestDispatcher(viewPage);
+			rd.forward(req,resp);
+		}else if(viewPage.endsWith(".do")) {
+			resp.sendRedirect(viewPage);
+		} else if (viewPage.endsWith(".json")) {
+			resp.setContentType("text/json;charset=utf-8");
+			resp.getWriter().print(viewPage.substring(0,viewPage.length()-5));
+		}
+		
+		
+	}
+}

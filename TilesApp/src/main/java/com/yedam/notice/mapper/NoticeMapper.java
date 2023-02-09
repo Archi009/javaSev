@@ -3,6 +3,7 @@ package com.yedam.notice.mapper;
 import java.util.List;
 
 import com.yedam.notice.vo.NoticeVO;
+import com.yedam.notice.vo.ReplyVO;
 
 public interface NoticeMapper {
 	public List<NoticeVO> selectList();
@@ -13,6 +14,10 @@ public interface NoticeMapper {
 	
 	public int increaseCnt(int nid);//조회수 증가
 	//댓글 목록
+	public List<ReplyVO> replyList(int nid);
 	//댓글 등록
+	public int insertReply(ReplyVO reply)	;//댓글 번호.
+	//댓글 삭제
+	public int deleteReply(int rid)	;//댓글 번호.
 	
 }
