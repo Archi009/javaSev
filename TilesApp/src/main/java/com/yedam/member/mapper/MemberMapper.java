@@ -10,4 +10,5 @@ public interface MemberMapper {
 	public List<MemberVO> memberList(); //회원 전체 목록
 	public MemberVO getMember(String id);//회원정보 조회용.
 	public int updateMember(MemberVO member);//수정
+	public int deleteMember(String mid);//삭제	
 }

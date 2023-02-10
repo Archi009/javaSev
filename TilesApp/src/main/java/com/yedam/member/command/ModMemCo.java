@@ -1,6 +1,8 @@
 package com.yedam.member.command;
 
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,13 +11,10 @@ import com.yedam.member.service.MemberService;
 import com.yedam.member.service.MemberServiceMybatis;
 import com.yedam.member.vo.MemberVO;
 
-
-public class ModifyControl implements Command {
+public class ModMemCo implements Command {
 
 	@Override
-	public String exec(HttpServletRequest req, HttpServletResponse resp) {
-	
-		
+	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("mid");
 		String pw = req.getParameter("mpass");
 		String name = req.getParameter("mname");

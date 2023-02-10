@@ -19,7 +19,33 @@
 		select * from members where member_id=#{id}
 	</select>
 	<update id="updateMember" parameterType="MemberVO">
-		
-	
+		update members 
+		<set>
+		<if test="image !=null">
+			image = #{image},
+		</if>
+		<if test="memberName !=null">
+			member_name = #{memberName},
+		</if>
+		<if test="memberId !=null">
+			member_id = #{memberId},
+		</if>
+		<if test="memberPw !=null">
+			member_pw = #{memberPw},
+		</if>
+		<if test="memberPhone !=null">
+			member_phone = #{memberPhone},
+		</if>
+		<if test="memberAddr !=null">
+			member_addr = #{memberAddr},
+		</if>
+		<if test="responsibility !=null">
+			responsibility = #{responsibility}
+		</if>
+		</set>
+		where member_id = #{memberId}
 	</update>
+	<delete id="deleteMember" parameterType="String">
+		delete from members where member_id = #{memberId}
+	</delete>
 </mapper>
