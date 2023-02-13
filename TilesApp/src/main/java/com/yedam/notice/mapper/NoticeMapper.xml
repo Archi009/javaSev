@@ -12,10 +12,12 @@
 		NOTICE_ID = #{nid}
 	</select>
 	<insert id="insertNotice" parameterType="NoticeVO">
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
+		select notice_seq.nextval from dual</selectKey>
 		INSERT INTO TBL_NOTICE
 		(NOTICE_ID, NOTICE_WRITER ,NOTICE_TITLE,
 		NOTICE_SUBJECT,attach_file)
-		VALUES(NOTICE_SEQ.NEXTVAL,
+		VALUES(${noticeId},
 		#{noticeWriter},#{noticeTitle},#{noticeSubject},#{attachFile})
 	</insert>
 

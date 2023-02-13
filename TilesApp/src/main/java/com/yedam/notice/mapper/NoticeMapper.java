@@ -18,6 +18,6 @@ public interface NoticeMapper {
 	//댓글 등록
 	public int insertReply(ReplyVO reply)	;//댓글 번호.
 	//댓글 삭제
-	public int deleteReply(int rid)	;//댓글 번호.
+	public int deleteReply(int rid)	;//댓글 번호.1
 	
 }
