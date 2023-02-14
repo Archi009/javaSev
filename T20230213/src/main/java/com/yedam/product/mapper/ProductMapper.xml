@@ -10,10 +10,10 @@
 	select * from product where product_code = #{pid}
 </select>
 <select id="relatedList" resultType="ProductVO" >
-<![CDATA[>
+<![CDATA[
 select * from( 
 select * from product order by like_it desc
-) where rownum <= 4;
+) where rownum <= 4
 ]]>
 </select>
 </mapper>

@@ -19,8 +19,8 @@ prefix="c" %>
         <div class="small mb-1">${vo.productCode}</div>
         <h1 class="display-5 fw-bolder">${vo.productName}</h1>
         <div class="fs-5 mb-5">
-          <span class="text-decoration-line-through">${vo.productPrice}</span>
-          <span>${vo.salePrice}</span>
+          <span class="text-decoration-line-through">${vo.productPrice}원</span>
+          <span>${vo.salePrice}원</span>
         </div>
         <p class="lead">${vo.productDesc}</p>
         <div class="d-flex">
@@ -47,6 +47,7 @@ prefix="c" %>
     <div
       class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
     >
+   
  	<c:forEach var="product" items="${list }">
       <div class="col mb-5">
         <div class="card h-100">
@@ -80,9 +81,9 @@ prefix="c" %>
               </div>
               <!-- Product price-->
               <span class="text-muted text-decoration-line-through"
-                >${product.productPrice }</span
+                >${product.productPrice }원</span
               >
-              ${product.salePrice }
+              ${product.salePrice }원
             </div>
           </div>
           <!-- Product actions-->

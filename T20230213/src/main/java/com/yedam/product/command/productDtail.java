@@ -21,7 +21,7 @@ public class productDtail implements Command {
 		req.setAttribute("vo", service.getProduct(pid));
 		System.out.println(service.getProduct(pid));
 		
-//		req.setAttribute("list",service.relateList());
+		req.setAttribute("list",service.relateList());
 		
 		return "product/product.tiles";
 	}

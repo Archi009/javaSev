@@ -43,9 +43,9 @@ prefix="c" %>
                 </div>
                 <!-- Product price-->
                 <span class="text-muted text-decoration-line-through"
-                  >${product.productPrice }</span
+                  >${product.productPrice }원</span
                 >
-                ${product.salePrice }
+                ${product.salePrice }원
               </div>
             </div>
             <!-- Product actions-->
